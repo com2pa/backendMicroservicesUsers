@@ -26,10 +26,14 @@ const { usertExtractor } = require('./middleware/auth');
   }
 })();
 
-app.use(cors({
-  origin: 'https://blog-3fxb.onrender.com', // Permite solo este dominio
-  credentials: true // Habilita cookies en solicitudes CORS
-}))
+app.use(
+  cors({
+    origin: 'https://blog-3fxb.onrender.com', // Permite solo este dominio
+    credentials: true, // Habilita el envío de cookies o credenciales
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+  })
+);
 app.use(express.json());
 app.use(cookieParser())
 // app.use(morgan('tiny'))
