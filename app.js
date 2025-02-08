@@ -27,7 +27,7 @@ const logoutRouter = require('./controllers/logout');
 })();
 
 app.use(cors({
-  origin: 'https://blogmicroservices.onrender.com', // Permite solo este dominio
+  origin: 'https://blog-3fxb.onrender.com/', // Permite solo este dominio
   credentials: true // Habilita cookies en solicitudes CORS
 }))
 app.use(express.json());
