@@ -1,13 +1,16 @@
-const refresRouter = require('express').Router()
-const jwt = require('jsonwebtoken')
-const User = require('../models/user')
+const refresRouter = require('express').Router();
+const { usertExtractor } = require('../middleware/auth');
 
-refresRouter.get('/',async(request,response)=>{
-    return response.status(200).json({
-        id: request.user.id,
-        name: request.user.name,
-        role:request.user.role
-    })
+refresRouter.get('/', usertExtractor, async (request, response) => {
+  if (!request.user) {
+    return response.status(401).json({ error: 'No autorizado' });
+  }
+
+  return response.status(200).json({
+    id: request.user.id,
+    name: request.user.name,
+    role: request.user.role,
+  });
 });
 
 module.exports = refresRouter;
