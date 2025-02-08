@@ -2,15 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const usersRouter = require('./controllers/users');
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
-const { usertExtractor } = require('./middleware/auth');
 const { MONGO_URL } = require('./config');
 
+const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
-const refresRouter = require('./controllers/refres');
 const logoutRouter = require('./controllers/logout');
+const refresRouter = require('./controllers/refres');
+const { usertExtractor } = require('./middleware/auth');
 
 
 
@@ -27,7 +27,7 @@ const logoutRouter = require('./controllers/logout');
 })();
 
 app.use(cors({
-  origin: 'https://blog-3fxb.onrender.com/', // Permite solo este dominio
+  origin: 'https://blog-3fxb.onrender.com', // Permite solo este dominio
   credentials: true // Habilita cookies en solicitudes CORS
 }))
 app.use(express.json());
