@@ -39,6 +39,7 @@ loginRouter.post('/', async(request,response)=>{
     const accesstoken = jwt.sign(userForToken, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: '1d'
     });
+    console.log(accesstoken)
     // console.log(new Date());
     // console.log(new Date(Date.now()+ 1000 * 60 * 60 * 24 * 1 ));
     

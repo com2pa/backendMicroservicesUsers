@@ -5,15 +5,15 @@ const usertExtractor = async (request, response, next) => {
   try {
     // comprobar que el token existe
     const token = request.cookies?.accesstoken;
+    console.log('obteniendo el token',token)
     if (!token)
       return response
         .status(401)
         .json({ error: 'No estas autorizado para acceder a esta ruta' });
 
     // verificar que el token es válido
-
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    // console.log(decoded)
+    console.log('verificando el token',decoded)
 
     // traer el usuario
     const user = await User.findById(decoded.id);
