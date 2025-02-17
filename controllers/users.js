@@ -13,6 +13,34 @@ usersRouter.get('/', async (request, response) => {
   // console.log('todos los usuarios', users)
   return response.json(users);
 });
+// verificacion de correo
+usersRouter.get('/verify/:id/:token', async (req, res) => {
+  try {
+    const { id, token } = req.params;
+
+    // Verificar el token
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    if (decoded.id !== id) {
+      return res.status(400).json({ error: 'Token inválido' });
+    }
+
+    // Buscar usuario y verificar si ya está confirmado
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    if (user.verificacion) {
+      return res.status(400).json({ message: 'El usuario ya está verificado' });
+    }
+
+    // Actualizar la verificación del usuario
+    await User.findByIdAndUpdate(id, { verificacion: true });
+
+    return res.status(200).json({ message: 'Correo verificado exitosamente' });
+  } catch (error) {
+    return res.status(400).json({ error: 'Token inválido o expirado' });
+  }
+});
 
 // creando usuario
 usersRouter.post('/', async (request, response) => {
