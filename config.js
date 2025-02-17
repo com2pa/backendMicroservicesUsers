@@ -1,6 +1,6 @@
 const PAGE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'https://micro-users.onrender.com'
+    ? 'https://micro-user-bju8.onrender.com'
     : 'http://localhost:5173';
 
     const MONGO_URL = process.env.NODE_ENV === 'production'
