@@ -52,7 +52,7 @@ app.use(cookieParser())
 app.use('/api/users', usersRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/refres', usertExtractor, refresRouter);
+app.use('/api/refres',refresRouter);
 
 
 
