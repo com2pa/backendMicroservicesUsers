@@ -20,7 +20,7 @@ loginRouter.post('/', async(request,response)=>{
     
 // verifico si la contraseña es correcta
     const saltRounds = 10
-    const isCorrect= await bcrypt.compare(password, userExist.password)
+    const isCorrect=  bcrypt.compare(password, userExist.password)
     if(!isCorrect){
         return response.status(400).json({error:'Email o Contraseña invalida por favor revisar'})
     }
