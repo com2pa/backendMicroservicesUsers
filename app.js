@@ -10,7 +10,7 @@ const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout');
 const refresRouter = require('./controllers/refres');
-// const { usertExtractor } = require('./middleware/auth');
+const { usertExtractor } = require('./middleware/auth');
 
 
 
@@ -52,7 +52,7 @@ app.use(cookieParser())
 app.use('/api/users', usersRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/refres',refresRouter);
+app.use('/api/refres',usertExtractor,refresRouter);
 
 
 
