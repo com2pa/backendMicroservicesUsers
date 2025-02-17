@@ -10,7 +10,7 @@ const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout');
 const refresRouter = require('./controllers/refres');
-const { usertExtractor } = require('./middleware/auth');
+// const { usertExtractor } = require('./middleware/auth');
 
 
 
