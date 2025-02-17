@@ -4,7 +4,7 @@ const User = require('../models/user');
 const usertExtractor = async (request, response, next) => {
   try {
     // comprobar que el token existe
-    const token = request.cookies?.accesstoken;
+    const token = request.cookies.accesstoken;
     console.log('obteniendo el token',token)
     if (!token)
       return response
