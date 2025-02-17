@@ -1,11 +1,7 @@
 const refresRouter = require('express').Router();
 const { usertExtractor } = require('../middleware/auth');
 
-refresRouter.get('/', usertExtractor, async (request, response) => {
-  if (!request.user) {
-    return response.status(401).json({ error: 'No autorizado' });
-  }
-
+refresRouter.get('/', async (request, response) => {
   return response.status(200).json({
     id: request.user.id,
     name: request.user.name,
