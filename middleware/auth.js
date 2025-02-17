@@ -36,7 +36,7 @@ const usertExtractor = async (request, response, next) => {
     // Almacenar el usuario en la request (sin información sensible)
     request.user = {
       id: user._id,
-      username: user.username,
+      name: user.name,
       email: user.email,
       // Otros campos no sensibles
     };
