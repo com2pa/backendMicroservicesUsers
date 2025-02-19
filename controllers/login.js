@@ -45,11 +45,11 @@ loginRouter.post('/', async(request,response)=>{
     
     // guardarlo en las cookies
     // expires: new Date(Date.now() + 900000 // 15min
-    response.cookie('accesstoken', accesstoken, { 
-       expires: new Date(Date.now()+ 1000 * 60 * 60 * 24 * 1 ),
-       httpOnly: true, // solo pueda ser leido por el lado del cliente
-       secure: process.env.NODE_ENV === 'production',  // solo en el caso de que se este en el entorno de producción (no en desarrollo)  // solo puede ser accedido por el server
-        sameSite: 'none', // Permite el envío de cookies en solicitudes CORS
+    response.cookie('accesstoken', accesstoken, {
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 1),
+      httpOnly: true, // Solo accesible desde el servidor
+      secure: true, // Solo enviar sobre HTTPS
+      sameSite: 'none', // Permite el envío de cookies en solicitudes CORS
     });
     // enviar respuesta con el token
     return response.status(200).json(userForToken);
