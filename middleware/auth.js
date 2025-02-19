@@ -5,7 +5,8 @@ const usertExtractor = async (request, response, next) => {
   try {
     // comprobar que el token existe
     const token = request.cookies.accesstoken;
-    console.log('obteniendo el token',token)
+    console.log('obteniendo el token', token)
+    console.log('rec',request.cookies)
     if (!token)
       return response
         .status(401)
