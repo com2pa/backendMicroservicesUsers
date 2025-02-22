@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { MONGO_URL } = require('./config');
 
@@ -11,9 +11,6 @@ const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout');
 const refresRouter = require('./controllers/refres');
 const { usertExtractor } = require('./middleware/auth');
-
-
-
 
 // const morgan=require('morgan')
 // conexion base de datos
@@ -26,13 +23,12 @@ const { usertExtractor } = require('./middleware/auth');
   }
 })();
 
-const allowedOrigins = [
+const allowedOrigins = [ 
   'https://blog-microservices.onrender.com', // Frontend
   'https://micro-post.onrender.com', // Otros microservicios
   'https://micro-user-bju8.onrender.com',
-  'https://micro-comment.onrender.com',,
-  'http://localhost:5173',
-];
+  'https://micro-comment.onrender.com',
+  ];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -48,17 +44,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 // app.use(morgan('tiny'))
 
 // rutas backEnd
 app.use('/api/users', usersRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/refres',usertExtractor,refresRouter);
-
-
-
-
+app.use('/api/refres', usertExtractor, refresRouter);
 
 module.exports = app;
